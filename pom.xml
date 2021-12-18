@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.daddychurchill</groupId>
     <name>CityWorld</name>
-    <version>5.0.0</version>
+    <version>5.0.1</version>
     <artifactId>CityWorld</artifactId>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -13,10 +13,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <repositories>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
+		<repository>
+			<id>spigot-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+		</repository>
         <repository>
             <id>worldedit-worldguard-repo</id>
             <url>http://maven.sk89q.com/repo/</url>
@@ -24,13 +24,12 @@
     </repositories>
     <build>
         <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
         <testResources>
           <testResource>
             <directory>src/test/resources</directory>
           </testResource>
         </testResources>
-        <finalName>${project.name}-${project.version}</finalName>
+        <finalName>${project.name}-${project.version}-SNAPSHOT</finalName>
         <resources>
             <resource>
                 <directory>resources</directory>
@@ -50,11 +49,11 @@
     </build>
     <dependencies>
         <!--Spigot API-->
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.18-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>1.18.1-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
     </dependencies>
 </project>

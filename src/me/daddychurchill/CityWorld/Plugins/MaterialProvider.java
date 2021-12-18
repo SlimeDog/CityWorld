@@ -574,10 +574,5 @@ public class MaterialProvider {
 		for (MaterialList materialList : listOfLists) {
 			materialList.write(generator, section);
 		}
-
-		section.set("LightPost_Height", LightPost_Height);
-		section.set("Materials_For_Lights", lights.name());
-		section.set("Materials_For_LightPosts", lightPosts.name());
-		section.set("Materials_For_LightPostBases", LightPostBases.name());
 	}
 }

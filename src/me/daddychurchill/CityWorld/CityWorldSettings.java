@@ -446,6 +446,12 @@ public class CityWorldSettings {
 			section.addDefault(tagIncludeUndergroundFluids, includeUndergroundFluids);
 			section.addDefault(tagIncludeAbovegroundFluids, includeAbovegroundFluids);
 			section.addDefault(tagIncludeWorkingLights, includeWorkingLights);
+
+			section.set("LightPost_Height", 3);
+			section.set("Materials_For_Lights", "GLOWSTONE");
+			section.set("Materials_For_LightPosts", "SPRUCE_FENCE");
+			section.set("Materials_For_LightPostBases", "STONE");
+
 			section.addDefault(tagIncludeNamedRoads, includeNamedRoads);
 			section.addDefault(tagIncludeDecayedRoads, includeDecayedRoads);
 			section.addDefault(tagIncludeDecayedBuildings, includeDecayedBuildings);
@@ -650,6 +656,12 @@ public class CityWorldSettings {
 			section.set(tagIncludeUndergroundFluids, includeUndergroundFluids);
 			section.set(tagIncludeAbovegroundFluids, includeAbovegroundFluids);
 			section.set(tagIncludeWorkingLights, includeWorkingLights);
+
+			section.set("LightPost_Height", section.getInt("LightPost_Height", 3));
+			section.set("Materials_For_Lights", section.getString("Materials_For_Lights", "GLOWSTONE"));
+			section.set("Materials_For_LightPosts", section.getString("Materials_For_LightPosts", "SPRUCE_FENCE"));
+			section.set("Materials_For_LightPostBases", section.getString("Materials_For_LightPostBases", "STONE"));
+
 			section.set(tagIncludeNamedRoads, includeNamedRoads);
 			section.set(tagIncludeDecayedRoads, includeDecayedRoads);
 			section.set(tagIncludeDecayedBuildings, includeDecayedBuildings);
