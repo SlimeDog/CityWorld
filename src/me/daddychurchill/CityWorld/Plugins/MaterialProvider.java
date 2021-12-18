@@ -565,9 +565,9 @@ public class MaterialProvider {
 		}
 
 		LightPost_Height = section.getInt("LightPost_Height", 3);
-		lights = (Material.getMaterial("Materials_For_Lights") != null ? Material.getMaterial("Materials_For_Lights") : Material.GLOWSTONE);
-		lightPosts = (Material.getMaterial("Materials_For_LightPosts") != null ? Material.getMaterial("Materials_For_LightPosts") : Material.SPRUCE_FENCE);
-		LightPostBases = (Material.getMaterial("Materials_For_LightPostBases") != null ? Material.getMaterial("Materials_For_LightPostBases") : Material.STONE);
+		lights = (Material.getMaterial(section.getString("Materials_For_Lights")) != null ? Material.getMaterial(section.getString("Materials_For_Lights")) : Material.GLOWSTONE);
+		lightPosts = (Material.getMaterial(section.getString("Materials_For_LightPosts")) != null ? Material.getMaterial(section.getString("Materials_For_LightPosts")) : Material.SPRUCE_FENCE);
+		LightPostBases = (Material.getMaterial(section.getString("Materials_For_LightPostBases")) != null ? Material.getMaterial(section.getString("Materials_For_LightPostBases")) : Material.STONE);
 	}
 
 	public void write(CityWorldGenerator generator, ConfigurationSection section) {
