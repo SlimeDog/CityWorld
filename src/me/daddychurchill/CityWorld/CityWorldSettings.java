@@ -335,28 +335,27 @@ public class CityWorldSettings {
 	}
 
 	private void loadSettings(CityWorldGenerator generator, FileConfiguration config, String worldname, Environment environment, WorldType worldtype, WorldStyle worldstyle) {
-
 		// get the right defaults
 		switch (environment) {
-		case NORMAL:
-			darkEnvironment = false;
-			treeStyle = TreeStyle.NORMAL;
-			subSurfaceStyle = SubSurfaceStyle.LAND;
-			break;
-		case NETHER:
-			darkEnvironment = true;
-			includeWorkingLights = false;
-			includeDecayedRoads = true;
-			includeDecayedBuildings = true;
-			includeDecayedNature = true;
-			treeStyle = TreeStyle.SPOOKY;
-			subSurfaceStyle = SubSurfaceStyle.LAVA;
-			break;
-		case THE_END:
-			darkEnvironment = true;
-			treeStyle = TreeStyle.CRYSTAL;
-			subSurfaceStyle = SubSurfaceStyle.CLOUD;
-			break;
+			case NORMAL -> {
+				darkEnvironment = false;
+				treeStyle = TreeStyle.NORMAL;
+				subSurfaceStyle = SubSurfaceStyle.LAND;
+			}
+			case NETHER -> {
+				darkEnvironment = true;
+				includeWorkingLights = false;
+				includeDecayedRoads = true;
+				includeDecayedBuildings = true;
+				includeDecayedNature = true;
+				treeStyle = TreeStyle.SPOOKY;
+				subSurfaceStyle = SubSurfaceStyle.LAVA;
+			}
+			case THE_END -> {
+				darkEnvironment = true;
+				treeStyle = TreeStyle.CRYSTAL;
+				subSurfaceStyle = SubSurfaceStyle.CLOUD;
+			}
 		}
 
 		// Initialize based world style settings
@@ -368,7 +367,7 @@ public class CityWorldSettings {
 //		// find the files
 //		File pluginFolder = generator.getPlugin().getDataFolder();
 //		if (pluginFolder.isDirectory()) {
-//			
+//
 //			// forget all those shape and ore type and just go for the world name
 //			schematicsFolder = findFolder(pluginFolder, "Schematics for " + generator.worldName);
 
@@ -581,7 +580,6 @@ public class CityWorldSettings {
 					includeFarms = false;
 				}
 			} else {
-				constructChunkRadius = Math.min(Integer.MAX_VALUE, constructChunkRadius);
 				roadChunkRadius = Math.min(constructChunkRadius, roadChunkRadius);
 				cityChunkRadius = Math.min(roadChunkRadius, cityChunkRadius);
 
@@ -706,176 +704,148 @@ public class CityWorldSettings {
 		// now get the right defaults for the world style
 		// anything commented out is up for user modification
 		switch (style) {
-		case NORMAL:
-		case METRO:
-			subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
-			break;
-		case SPARSE:
-			centerPointOfChunkRadiusX = 0; // DIFFERENT
-			centerPointOfChunkRadiusZ = 0; // DIFFERENT
-			constructChunkRadius = 150; // DIFFERENT
-			roadChunkRadius = 150; // DIFFERENT
-			cityChunkRadius = 50; // DIFFERENT
-			buildOutsideRadius = false; // DIFFERENT
-			minInbetweenChunkDistanceOfCities = 100; // DIFFERENT
-
-			subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
-			break;
-		case NATURE:
-			includeRoads = false; // DIFFERENT
-			includeRoundabouts = false; // DIFFERENT
-			break;
-		case DESTROYED:
-			includeDecayedRoads = true; // DIFFERENT
-			includeDecayedBuildings = true; // DIFFERENT
-			includeDecayedNature = true; // DIFFERENT
-			includeAirborneStructures = false; // DIFFERENT;
-
-			subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
-			break;
-		case MAZE:
-			includeRoads = true; // This has to be true in order for things to generate correctly
-			includeRoundabouts = false; // DIFFERENT
-			includeMines = false; // DIFFERENT
-			includeBunkers = false; // DIFFERENT
-
-			spawnersInMines = false; // DIFFERENT
-			spawnersInBunkers = false; // DIFFERENT
-			treasuresInMines = false; // DIFFERENT
-			treasuresInBunkers = false; // DIFFERENT
-
-			subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
-			break;
-		case ASTRAL:
-			includeRoundabouts = false; // DIFFERENT
-			includeSewers = false; // DIFFERENT
-			includeCisterns = false; // DIFFERENT
-			includeBasements = false; // DIFFERENT
-			includeMines = false; // DIFFERENT
-			includeBunkers = false; // DIFFERENT
-			includeFarms = false; // DIFFERENT
-			includeAirborneStructures = false; // DIFFERENT;
-
-			includeSeas = true; // THIS MUST BE SET TO TRUE
-			includeMountains = true; // THIS MUST BE SET TO TRUE
-
-			spawnersInBunkers = false; // DIFFERENT
-			spawnersInMines = false; // DIFFERENT
-			spawnersInSewers = false; // DIFFERENT
-
-			treasuresInBunkers = false; // DIFFERENT
-			treasuresInMines = false; // DIFFERENT
-			treasuresInSewers = false; // DIFFERENT
-
-			includeUndergroundFluids = false; // THIS MUST BE SET TO FALSE
-			includeAbovegroundFluids = false; // THIS MUST BE SET TO FALSE
-			subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
-			break;
-		case FLOATING:
-			includeMines = false; // DIFFERENT
-			includeBunkers = false; // DIFFERENT
-			includeAirborneStructures = false; // DIFFERENT;
-
-			includeCaves = false; // DIFFERENT
-			includeLavaFields = false; // DIFFERENT
-			includeSeas = false; // DIFFERENT
-			includeMountains = true; // THIS MUST BE SET TO TRUE
-			includeOres = false; // DIFFERENT
-			includeBones = false; // DIFFERENT
-			includeFires = false; // DIFFERENT
-
-			spawnersInBunkers = false; // DIFFERENT
-			spawnersInMines = false; // DIFFERENT
-			spawnersInSewers = false; // DIFFERENT
-
-			treasuresInBunkers = false; // DIFFERENT
-			treasuresInMines = false; // DIFFERENT
-			treasuresInSewers = false; // DIFFERENT
-
-			includeUndergroundFluids = false; // DIFFERENT
-			includeAbovegroundFluids = true; // THIS MUST BE SET TO TRUE
-
-			break;
-		case FLOODED:
-			includeRoundabouts = false; // DIFFERENT
-			includeSewers = false; // DIFFERENT
-			includeMines = false; // DIFFERENT
-			includeBunkers = false; // DIFFERENT
-			includeAirborneStructures = false; // DIFFERENT;
-
-			includeCaves = false; // DIFFERENT
-			includeLavaFields = false; // DIFFERENT
-			includeSeas = true; // THIS MUST BE SET TO TRUE
-			includeMountains = true; // THIS MUST BE SET TO TRUE
-			includeFires = false; // DIFFERENT
-
-			spawnersInBunkers = false; // DIFFERENT
-			spawnersInMines = false; // DIFFERENT
-			spawnersInSewers = false; // DIFFERENT
-
-			treasuresInBunkers = false; // DIFFERENT
-			treasuresInMines = false; // DIFFERENT
-			treasuresInSewers = false; // DIFFERENT
-
-			includeUndergroundFluids = false; // DIFFERENT
-			includeAbovegroundFluids = true; // THIS MUST BE SET TO TRUE
-			includeWorkingLights = false; // DIFFERENT
-			includeNamedRoads = false; // DIFFERENT
-			includeDecayedRoads = false; // DIFFERENT
-			includeDecayedBuildings = false; // DIFFERENT
-			subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
-			break;
-		case SANDDUNES:
-			includeRoundabouts = false; // DIFFERENT
-			includeSewers = false; // DIFFERENT
-			includeMines = false; // DIFFERENT
-			includeBunkers = false; // DIFFERENT
-			includeAirborneStructures = false; // DIFFERENT;
-
-			includeCaves = false; // DIFFERENT
-			includeLavaFields = false; // DIFFERENT
-			includeSeas = true; // THIS MUST BE SET TO TRUE
-			includeMountains = true; // THIS MUST BE SET TO TRUE
-
-			spawnersInBunkers = false; // DIFFERENT
-			spawnersInMines = false; // DIFFERENT
-			spawnersInSewers = false; // DIFFERENT
-
-			treasuresInBunkers = false; // DIFFERENT
-			treasuresInMines = false; // DIFFERENT
-			treasuresInSewers = false; // DIFFERENT
-
-			includeAbovegroundFluids = false; // THIS MUST BE SET TO FALSE
-			includeWorkingLights = false; // DIFFERENT
-			includeNamedRoads = false; // DIFFERENT
-			includeDecayedNature = true; // DIFFERENT
-			subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
-			break;
-		case SNOWDUNES:
-			includeRoundabouts = false; // DIFFERENT
-			includeSewers = false; // DIFFERENT
-			includeMines = false; // DIFFERENT
-			includeBunkers = false; // DIFFERENT
-			includeAirborneStructures = false; // DIFFERENT;
-
-			includeCaves = false; // DIFFERENT
-			includeLavaFields = false; // DIFFERENT
-			includeSeas = true; // THIS MUST BE SET TO TRUE
-			includeMountains = true; // THIS MUST BE SET TO TRUE
-
-			spawnersInBunkers = false; // DIFFERENT
-			spawnersInMines = false; // DIFFERENT
-			spawnersInSewers = false; // DIFFERENT
-
-			treasuresInBunkers = false; // DIFFERENT
-			treasuresInMines = false; // DIFFERENT
-			treasuresInSewers = false; // DIFFERENT
-
-			includeAbovegroundFluids = true; // THIS MUST BE SET TO TRUE
-			includeWorkingLights = false; // DIFFERENT
-			includeNamedRoads = false; // DIFFERENT
-			subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
-			break;
+			case NORMAL, METRO -> subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
+			case SPARSE -> {
+				centerPointOfChunkRadiusX = 0; // DIFFERENT
+				centerPointOfChunkRadiusZ = 0; // DIFFERENT
+				constructChunkRadius = 150; // DIFFERENT
+				roadChunkRadius = 150; // DIFFERENT
+				cityChunkRadius = 50; // DIFFERENT
+				buildOutsideRadius = false; // DIFFERENT
+				minInbetweenChunkDistanceOfCities = 100; // DIFFERENT
+				subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
+			}
+			case NATURE -> {
+				includeRoads = false; // DIFFERENT
+				includeRoundabouts = false; // DIFFERENT
+			}
+			case DESTROYED -> {
+				includeDecayedRoads = true; // DIFFERENT
+				includeDecayedBuildings = true; // DIFFERENT
+				includeDecayedNature = true; // DIFFERENT
+				includeAirborneStructures = false; // DIFFERENT;
+				subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
+			}
+			case MAZE -> {
+				includeRoads = true; // This has to be true in order for things to generate correctly
+				includeRoundabouts = false; // DIFFERENT
+				includeMines = false; // DIFFERENT
+				includeBunkers = false; // DIFFERENT
+				spawnersInMines = false; // DIFFERENT
+				spawnersInBunkers = false; // DIFFERENT
+				treasuresInMines = false; // DIFFERENT
+				treasuresInBunkers = false; // DIFFERENT
+				subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
+			}
+			case ASTRAL -> {
+				includeRoundabouts = false; // DIFFERENT
+				includeSewers = false; // DIFFERENT
+				includeCisterns = false; // DIFFERENT
+				includeBasements = false; // DIFFERENT
+				includeMines = false; // DIFFERENT
+				includeBunkers = false; // DIFFERENT
+				includeFarms = false; // DIFFERENT
+				includeAirborneStructures = false; // DIFFERENT;
+				includeSeas = true; // THIS MUST BE SET TO TRUE
+				includeMountains = true; // THIS MUST BE SET TO TRUE
+				spawnersInBunkers = false; // DIFFERENT
+				spawnersInMines = false; // DIFFERENT
+				spawnersInSewers = false; // DIFFERENT
+				treasuresInBunkers = false; // DIFFERENT
+				treasuresInMines = false; // DIFFERENT
+				treasuresInSewers = false; // DIFFERENT
+				includeUndergroundFluids = false; // THIS MUST BE SET TO FALSE
+				includeAbovegroundFluids = false; // THIS MUST BE SET TO FALSE
+				subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
+			}
+			case FLOATING -> {
+				includeMines = false; // DIFFERENT
+				includeBunkers = false; // DIFFERENT
+				includeAirborneStructures = false; // DIFFERENT;
+				includeCaves = false; // DIFFERENT
+				includeLavaFields = false; // DIFFERENT
+				includeSeas = false; // DIFFERENT
+				includeMountains = true; // THIS MUST BE SET TO TRUE
+				includeOres = false; // DIFFERENT
+				includeBones = false; // DIFFERENT
+				includeFires = false; // DIFFERENT
+				spawnersInBunkers = false; // DIFFERENT
+				spawnersInMines = false; // DIFFERENT
+				spawnersInSewers = false; // DIFFERENT
+				treasuresInBunkers = false; // DIFFERENT
+				treasuresInMines = false; // DIFFERENT
+				treasuresInSewers = false; // DIFFERENT
+				includeUndergroundFluids = false; // DIFFERENT
+				includeAbovegroundFluids = true; // THIS MUST BE SET TO TRUE
+			}
+			case FLOODED -> {
+				includeRoundabouts = false; // DIFFERENT
+				includeSewers = false; // DIFFERENT
+				includeMines = false; // DIFFERENT
+				includeBunkers = false; // DIFFERENT
+				includeAirborneStructures = false; // DIFFERENT;
+				includeCaves = false; // DIFFERENT
+				includeLavaFields = false; // DIFFERENT
+				includeSeas = true; // THIS MUST BE SET TO TRUE
+				includeMountains = true; // THIS MUST BE SET TO TRUE
+				includeFires = false; // DIFFERENT
+				spawnersInBunkers = false; // DIFFERENT
+				spawnersInMines = false; // DIFFERENT
+				spawnersInSewers = false; // DIFFERENT
+				treasuresInBunkers = false; // DIFFERENT
+				treasuresInMines = false; // DIFFERENT
+				treasuresInSewers = false; // DIFFERENT
+				includeUndergroundFluids = false; // DIFFERENT
+				includeAbovegroundFluids = true; // THIS MUST BE SET TO TRUE
+				includeWorkingLights = false; // DIFFERENT
+				includeNamedRoads = false; // DIFFERENT
+				includeDecayedRoads = false; // DIFFERENT
+				includeDecayedBuildings = false; // DIFFERENT
+				subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
+			}
+			case SANDDUNES -> {
+				includeRoundabouts = false; // DIFFERENT
+				includeSewers = false; // DIFFERENT
+				includeMines = false; // DIFFERENT
+				includeBunkers = false; // DIFFERENT
+				includeAirborneStructures = false; // DIFFERENT;
+				includeCaves = false; // DIFFERENT
+				includeLavaFields = false; // DIFFERENT
+				includeSeas = true; // THIS MUST BE SET TO TRUE
+				includeMountains = true; // THIS MUST BE SET TO TRUE
+				spawnersInBunkers = false; // DIFFERENT
+				spawnersInMines = false; // DIFFERENT
+				spawnersInSewers = false; // DIFFERENT
+				treasuresInBunkers = false; // DIFFERENT
+				treasuresInMines = false; // DIFFERENT
+				treasuresInSewers = false; // DIFFERENT
+				includeAbovegroundFluids = false; // THIS MUST BE SET TO FALSE
+				includeWorkingLights = false; // DIFFERENT
+				includeNamedRoads = false; // DIFFERENT
+				includeDecayedNature = true; // DIFFERENT
+				subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
+			}
+			case SNOWDUNES -> {
+				includeRoundabouts = false; // DIFFERENT
+				includeSewers = false; // DIFFERENT
+				includeMines = false; // DIFFERENT
+				includeBunkers = false; // DIFFERENT
+				includeAirborneStructures = false; // DIFFERENT;
+				includeCaves = false; // DIFFERENT
+				includeLavaFields = false; // DIFFERENT
+				includeSeas = true; // THIS MUST BE SET TO TRUE
+				includeMountains = true; // THIS MUST BE SET TO TRUE
+				spawnersInBunkers = false; // DIFFERENT
+				spawnersInMines = false; // DIFFERENT
+				spawnersInSewers = false; // DIFFERENT
+				treasuresInBunkers = false; // DIFFERENT
+				treasuresInMines = false; // DIFFERENT
+				treasuresInSewers = false; // DIFFERENT
+				includeAbovegroundFluids = true; // THIS MUST BE SET TO TRUE
+				includeWorkingLights = false; // DIFFERENT
+				includeNamedRoads = false; // DIFFERENT
+				subSurfaceStyle = SubSurfaceStyle.NONE; // DIFFERENT
+			}
 		}
 	}
 
@@ -887,7 +857,7 @@ public class CityWorldSettings {
 //				throw new UnsupportedOperationException("[WorldEdit] Could not create/find the folder: " + parent.getAbsolutePath() + File.separator + name);
 //		return result;
 //	}
-//	
+//
 //	private String toCamelCase(String text) {
 //		return text.substring(0, 1).toUpperCase() + text.substring(1, text.length()).toLowerCase();
 //	}

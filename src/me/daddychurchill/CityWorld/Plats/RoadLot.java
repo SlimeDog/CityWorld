@@ -18,13 +18,13 @@ public class RoadLot extends ConnectedLot {
 	public static final int PlatMapRoadInset = 3;
 
 	protected final static int sidewalkWidth = 3;
-	protected final static int lightpostHeight = 3;
+	protected static int lightpostHeight = 3;
 	private final static int crossDitchEdge = 7;
 	private final static int tunnelHeight = 8;
 	private final static int fenceHeight = 2;
 
-	private final static Material lightpostbaseMaterial = Material.STONE;
-	private final static Material lightpostMaterial = Material.SPRUCE_FENCE;
+	private static Material lightpostbaseMaterial = Material.STONE;
+	private static Material lightpostMaterial = Material.SPRUCE_FENCE;
 
 	public final static Material sewerMaterial = Material.SMOOTH_STONE;
 	private final static Material sewerFloor = Material.STONE_BRICKS;
@@ -75,6 +75,10 @@ public class RoadLot extends ConnectedLot {
 		if (blockYs.getMaxHeight() > topOfRoad + tunnelHeight)
 			topOfRoad += tunnelHeight;
 
+		lightpostHeight = platmap.generator.materialProvider.LightPost_Height;
+		lightpostMaterial = platmap.generator.materialProvider.lightPosts;
+		lightpostbaseMaterial = platmap.generator.materialProvider.LightPostBases;
+
 		pavementMat = platmap.generator.materialProvider.itemsMaterialListFor_Roads.getNthMaterial(0,
 				Material.WHITE_TERRACOTTA);
 		linesMat = platmap.generator.materialProvider.itemsMaterialListFor_Roads.getNthMaterial(1,
@@ -86,6 +90,8 @@ public class RoadLot extends ConnectedLot {
 
 		pavementIsClay = pavementMat == Material.WHITE_TERRACOTTA;
 		dirtroadIsClay = dirtroadMat == Material.WHITE_TERRACOTTA;
+
+
 	}
 
 	@Override
@@ -1320,22 +1326,22 @@ public class RoadLot extends ConnectedLot {
 
 				// look carefully, these are actually different
 				switch (chunkOdds.getRandomInt(4)) {
-				case 1:
-					generateTreat(generator, chunk, 6, sewerY, 6);
-					generateTrick(generator, chunk, 9, sewerY, 9);
-					break;
-				case 2:
-					generateTreat(generator, chunk, 9, sewerY, 6);
-					generateTrick(generator, chunk, 6, sewerY, 9);
-					break;
-				case 3:
-					generateTreat(generator, chunk, 6, sewerY, 9);
-					generateTrick(generator, chunk, 9, sewerY, 6);
-					break;
-				default:
-					generateTreat(generator, chunk, 9, sewerY, 9);
-					generateTrick(generator, chunk, 6, sewerY, 6);
-					break;
+					case 1 -> {
+						generateTreat(generator, chunk, 6, sewerY, 6);
+						generateTrick(generator, chunk, 9, sewerY, 9);
+					}
+					case 2 -> {
+						generateTreat(generator, chunk, 9, sewerY, 6);
+						generateTrick(generator, chunk, 6, sewerY, 9);
+					}
+					case 3 -> {
+						generateTreat(generator, chunk, 6, sewerY, 9);
+						generateTrick(generator, chunk, 9, sewerY, 6);
+					}
+					default -> {
+						generateTreat(generator, chunk, 9, sewerY, 9);
+						generateTrick(generator, chunk, 6, sewerY, 6);
+					}
 				}
 			} else {
 				if (centerNorth) {
@@ -1629,21 +1635,14 @@ public class RoadLot extends ConnectedLot {
 
 	private void generateDoor(RealBlocks chunk, int x, int y, int z, BlockFace direction) {
 		switch (chunkOdds.getRandomInt(5)) {
-		case 1:
-			chunk.setBlocks(x, y, y + 2, z, Material.BRICKS);
-			break;
-		case 2:
-			chunk.setFenceDoor(x, y, y + 2, z, Material.IRON_BARS, direction);
-			break;
-		case 3:
-			chunk.setBlocks(x, y, y + 2, z, Material.AIR);
-			break;
+			case 1 -> chunk.setBlocks(x, y, y + 2, z, Material.BRICKS);
+			case 2 -> chunk.setFenceDoor(x, y, y + 2, z, Material.IRON_BARS, direction);
+			case 3 -> chunk.setBlocks(x, y, y + 2, z, Material.AIR);
+
 //		case 4:
 //			chunk.setIronDoor(x, y, z, direction);
 //			break;
-		default:
-			chunk.setDoor(x, y, z, Material.BIRCH_DOOR, direction);
-			break;
+			default -> chunk.setDoor(x, y, z, Material.BIRCH_DOOR, direction);
 		}
 	}
 

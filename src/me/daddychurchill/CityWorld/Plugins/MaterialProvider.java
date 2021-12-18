@@ -12,6 +12,11 @@ import me.daddychurchill.CityWorld.Support.MaterialList;
 public class MaterialProvider {
 	// https://minecraft.gamepedia.com/1.13/Flattening
 
+	public Material lights = Material.GLOWSTONE;
+	public Material lightPosts = Material.SPRUCE_FENCE;
+	public Material LightPostBases = Material.STONE;
+	public int LightPost_Height = 3;
+
 	private final static String tagRandomMaterials_BunkerChests = "Random_Materials_For_Bunker_Chests";
 	public final MaterialList itemsRandomMaterials_BunkerChests = createList(tagRandomMaterials_BunkerChests,
 			Material.IRON_PICKAXE, Material.IRON_SWORD, Material.IRON_SHOVEL, Material.IRON_BOOTS,
@@ -558,12 +563,21 @@ public class MaterialProvider {
 		for (MaterialList materialList : listOfLists) {
 			materialList.read(generator, section);
 		}
+
+		LightPost_Height = section.getInt("LightPost_Height", 3);
+		lights = (Material.getMaterial("Materials_For_Lights") != null ? Material.getMaterial("Materials_For_Lights") : Material.GLOWSTONE);
+		lightPosts = (Material.getMaterial("Materials_For_LightPosts") != null ? Material.getMaterial("Materials_For_LightPosts") : Material.SPRUCE_FENCE);
+		LightPostBases = (Material.getMaterial("Materials_For_LightPostBases") != null ? Material.getMaterial("Materials_For_LightPostBases") : Material.STONE);
 	}
 
 	public void write(CityWorldGenerator generator, ConfigurationSection section) {
 		for (MaterialList materialList : listOfLists) {
 			materialList.write(generator, section);
 		}
-	}
 
+		section.set("LightPost_Height", LightPost_Height);
+		section.set("Materials_For_Lights", lights.name());
+		section.set("Materials_For_LightPosts", lightPosts.name());
+		section.set("Materials_For_LightPostBases", LightPostBases.name());
+	}
 }

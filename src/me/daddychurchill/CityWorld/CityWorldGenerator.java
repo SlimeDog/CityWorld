@@ -1,9 +1,6 @@
 package me.daddychurchill.CityWorld;
 
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -203,11 +200,10 @@ public class CityWorldGenerator extends ChunkGenerator implements CityWorldLog {
 
 	@Override
 	public List<BlockPopulator> getDefaultPopulators(World world) {
-		return Arrays.asList((BlockPopulator) new CityWorldBlockPopulator(this));
+		return Collections.singletonList(new CityWorldBlockPopulator(this));
 	}
 
 	public void initializeWorldInfo(World aWorld) {
-
 		// initialize the shaping logic
 		if (world == null) {
 			world = aWorld;

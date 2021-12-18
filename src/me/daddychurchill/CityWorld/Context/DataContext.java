@@ -79,15 +79,15 @@ public abstract class DataContext {
 
 		// lights?
 		if (generator.getSettings().includeWorkingLights) {
-			lightMat = Material.GLOWSTONE;
+			lightMat = generator.materialProvider.lights;
 			torchMat = Material.TORCH;
 		} else {
-			lightMat = Material.REDSTONE_LAMP;
+			lightMat = generator.materialProvider.lights;
 			torchMat = Material.REDSTONE_TORCH;
 		}
 
 		// where is the ground
-		buildingMaximumY = Math.min(192 + FudgeFloorsAbove * FloorHeight, generator.height);
+		buildingMaximumY = Math.min(192, generator.height);
 		absoluteMaximumFloorsBelow = Math.max(
 				Math.min(generator.streetLevel / FloorHeight - FudgeFloorsBelow, absoluteAbsoluteMaximumFloorsBelow),
 				0);
