@@ -1,6 +1,6 @@
 name: CityWorld
 main: me.daddychurchill.CityWorld.CityWorld
-version: 5.0.0
+version: ${project.version}
 api-version: 1.18
 load: STARTUP
 author: DaddyChurchill

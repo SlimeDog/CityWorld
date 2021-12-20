@@ -19,8 +19,7 @@ class CommandCityWorld implements CommandExecutor {
 	}
 
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] split) {
-		if (sender instanceof Player) {
-			Player player = (Player) sender;
+		if (sender instanceof Player player) {
 			if (player.hasPermission("cityworld.command")) {
 				boolean leaving = false;
 				WorldStyle style = WorldStyle.NORMAL;
@@ -50,7 +49,7 @@ class CommandCityWorld implements CommandExecutor {
 								worldStyles.append(worldStyle.toString().toLowerCase());
 							}
 							CityWorld.log.info(
-									"[CityWorld] this version knows about these styles: " + worldStyles.toString());
+									"[CityWorld] this version knows about these styles: " + worldStyles);
 							style = WorldStyle.NORMAL;
 							error = true;
 							break;
@@ -102,12 +101,11 @@ class CommandCityWorld implements CommandExecutor {
 						// actually go there then
 						if (player.getLocation().getWorld() == world) {
 							sender.sendMessage("You are already here");
-							return true;
 						} else {
 							player.sendMessage("Entering " + worldName + "...");
 							player.teleport(world.getSpawnLocation());
-							return true;
 						}
+						return true;
 					}
 				}
 			} else {

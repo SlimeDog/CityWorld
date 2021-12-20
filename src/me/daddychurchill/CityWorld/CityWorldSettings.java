@@ -447,10 +447,10 @@ public class CityWorldSettings {
 			section.addDefault(tagIncludeAbovegroundFluids, includeAbovegroundFluids);
 			section.addDefault(tagIncludeWorkingLights, includeWorkingLights);
 
-			section.set("LightPost_Height", 3);
-			section.set("Materials_For_Lights", "GLOWSTONE");
-			section.set("Materials_For_LightPosts", "SPRUCE_FENCE");
-			section.set("Materials_For_LightPostBases", "STONE");
+			section.addDefault("LightPost_Height", 3);
+			section.addDefault("Materials_For_Lights", "GLOWSTONE");
+			section.addDefault("Materials_For_LightPosts", "SPRUCE_FENCE");
+			section.addDefault("Materials_For_LightPostBases", "STONE");
 
 			section.addDefault(tagIncludeNamedRoads, includeNamedRoads);
 			section.addDefault(tagIncludeDecayedRoads, includeDecayedRoads);
