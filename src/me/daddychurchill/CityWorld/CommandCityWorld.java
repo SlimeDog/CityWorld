@@ -21,6 +21,19 @@ class CommandCityWorld implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] split) {
 		if (sender instanceof Player player) {
 			if (player.hasPermission("cityworld.command")) {
+				if(split[0].equalsIgnoreCase("reload")) {
+					if(!player.hasPermission("cityworld.command.reload")) {
+						player.sendMessage("§cYou do not have permission to use this command");
+						return true;
+					}
+
+					Bukkit.getPluginManager().disablePlugin(this.plugin);
+
+					Bukkit.getPluginManager().enablePlugin(this.plugin);
+					player.sendMessage("§aPlugin Reloaded");
+					return true;
+				}
+
 				boolean leaving = false;
 				WorldStyle style = WorldStyle.NORMAL;
 				Environment environment = Environment.NORMAL;

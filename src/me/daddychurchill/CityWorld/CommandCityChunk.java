@@ -2,6 +2,11 @@ package me.daddychurchill.CityWorld;
 
 import java.util.List;
 
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.bukkit.BukkitWorld;
+import com.sk89q.worldedit.math.BlockVector3;
+import com.sk89q.worldedit.regions.CuboidRegion;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -84,7 +89,7 @@ class CommandCityChunk implements CommandExecutor {
 						for (int x = chunkX - radius; x <= chunkX + radius; x++) {
 							for (int z = chunkZ - radius; z <= chunkZ + radius; z++) {
 								player.sendMessage("Regenerating chunk[" + x + ", " + z + "]");
-								world.regenerateChunk(x, z);
+								regenerateChunk(world.getChunkAt(x, z));
 							}
 						}
 					}
@@ -122,6 +127,24 @@ class CommandCityChunk implements CommandExecutor {
 			}
 		} else {
 			sender.sendMessage("This command is only usable by a player");
+			return false;
+		}
+	}
+
+	public boolean regenerateChunk(Chunk chunk) {
+		int bx = chunk.getX() << 4;
+		int bz = chunk.getZ() << 4;
+		try {
+			BlockVector3 pt1 = BlockVector3.at(bx, 0, bz);
+			BlockVector3 pt2 = BlockVector3.at(bx + 15, 256, bz + 15);
+			BukkitWorld world = new BukkitWorld(chunk.getWorld());
+			CuboidRegion region = new CuboidRegion(world, pt1, pt2);
+			EditSession session = WorldEdit.getInstance().getEditSessionFactory().getEditSession(world, 65536);
+			boolean result = world.regenerate(region, session);
+			session.flushSession();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

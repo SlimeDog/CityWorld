@@ -48,7 +48,6 @@ public abstract class PasteProvider extends Provider {
 
 		// default to stock PasteProvider
 		if (provider == null) {
-			generator.reportMessage("[PasteProvider] WorldEdit not found or not working, schematics disabled");
 			provider = new PasteProvider_Normal(generator);
 		}
 

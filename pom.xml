@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.daddychurchill</groupId>
     <name>CityWorld</name>
-    <version>5.0.2</version>
+    <version>5.0.3-SNAPSHOT</version>
     <artifactId>CityWorld</artifactId>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -18,8 +18,8 @@
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
         <repository>
-            <id>worldedit-worldguard-repo</id>
-            <url>http://maven.sk89q.com/repo/</url>
+            <id>com.sk89q.worldedit</id>
+            <url>https://maven.enginehub.org/repo/</url>
         </repository>
     </repositories>
     <build>
@@ -29,7 +29,7 @@
             <directory>src/test/resources</directory>
           </testResource>
         </testResources>
-        <finalName>${project.name}-${project.version}-SNAPSHOT</finalName>
+        <finalName>${project.name}-${project.version}</finalName>
         <resources>
             <resource>
                 <directory>resources</directory>
@@ -53,6 +53,18 @@
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
 			<version>1.18.1-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sk89q.worldedit</groupId>
+			<artifactId>worldedit-bukkit</artifactId>
+			<version>7.2.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sk89q.worldedit</groupId>
+			<artifactId>worldedit-core</artifactId>
+			<version>7.2.0-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
     </dependencies>
