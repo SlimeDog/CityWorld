@@ -37,6 +37,9 @@ permissions:
   cityworld.create:
     description: Allows users to create the default CityWorld if it doesn't exist when the user enters it
     default: op
+  cityworld.command.reload:
+      description: Allows the player to reload the plugin
+      default: op
   citychunk.command:
     description: Allows users to regenerate or cleanup world chunks
     default: op
