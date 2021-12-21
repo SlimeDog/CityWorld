@@ -19,20 +19,30 @@ class CommandCityWorld implements CommandExecutor {
 	}
 
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] split) {
-		if (sender instanceof Player player) {
-			if (player.hasPermission("cityworld.command")) {
-				if(split[0].equalsIgnoreCase("reload")) {
-					if(!player.hasPermission("cityworld.command.reload")) {
+		if(split.length == 1) {
+			if (split[0].equalsIgnoreCase("reload")) {
+				if(sender instanceof Player player) {
+					if (!player.hasPermission("cityworld.command.reload")) {
 						player.sendMessage("§cYou do not have permission to use this command");
 						return true;
 					}
-
-					Bukkit.getPluginManager().disablePlugin(this.plugin);
-
-					Bukkit.getPluginManager().enablePlugin(this.plugin);
-					player.sendMessage("§aPlugin Reloaded");
-					return true;
 				}
+
+				Bukkit.getPluginManager().disablePlugin(this.plugin);
+
+				Bukkit.getPluginManager().enablePlugin(this.plugin);
+
+				sender.sendMessage("§aPlugin Reloaded");
+				return true;
+			}
+
+			sender.sendMessage("/cityworld reload");
+			sender.sendMessage("/cityworld [leave] [normal|destroyed|maze|astral|sanddunes|snowdunes|flooded|floating|nature|metro] [normal|nether|the_end]");
+			return true;
+		}
+
+		if (sender instanceof Player player) {
+			if (player.hasPermission("cityworld.command")) {
 
 				boolean leaving = false;
 				WorldStyle style = WorldStyle.NORMAL;
@@ -72,14 +82,18 @@ class CommandCityWorld implements CommandExecutor {
 				// that isn't an option we support
 				if (error) {
 					sender.sendMessage("Syntax error");
-					return false;
+					sender.sendMessage("/cityworld reload");
+					sender.sendMessage("/cityworld [leave] [normal|destroyed|maze|astral|sanddunes|snowdunes|flooded|floating|nature|metro] [normal|nether|the_end]");
+					return true;
 
 					// let's try to leave the city
 				} else if (leaving) {
 					World world = Bukkit.getServer().getWorld("world");
 					if (world == null) {
 						sender.sendMessage("Cannot find the default world");
-						return false;
+						sender.sendMessage("/cityworld reload");
+						sender.sendMessage("/cityworld [leave] [normal|destroyed|maze|astral|sanddunes|snowdunes|flooded|floating|nature|metro] [normal|nether|the_end]");
+						return true;
 					} else if (player.getLocation().getWorld() == world) {
 						sender.sendMessage("You are already there");
 						return true;
@@ -103,7 +117,7 @@ class CommandCityWorld implements CommandExecutor {
 					// test to see if it exists
 					if (world == null) {
 						sender.sendMessage("Cannot find or create " + worldName);
-						return false;
+						return true;
 					} else {
 
 						// are we actually going to the right place
@@ -123,11 +137,13 @@ class CommandCityWorld implements CommandExecutor {
 				}
 			} else {
 				sender.sendMessage("You do not have permission to use this command");
-				return false;
+				return true;
 			}
 		} else {
 			sender.sendMessage("This command is only usable by a player");
-			return false;
+			sender.sendMessage("/cityworld reload");
+			sender.sendMessage("/cityworld [leave] [normal|destroyed|maze|astral|sanddunes|snowdunes|flooded|floating|nature|metro] [normal|nether|the_end]");
+			return true;
 		}
 	}
 

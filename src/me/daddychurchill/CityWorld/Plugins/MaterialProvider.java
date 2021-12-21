@@ -575,9 +575,28 @@ public class MaterialProvider {
 			materialList.write(generator, section);
 		}
 
-		section.set("LightPost_Height", LightPost_Height);
-		section.set("Materials_For_Lights", lights.name());
-		section.set("Materials_For_LightPosts", lightPosts.name());
-		section.set("Materials_For_LightPostBases", LightPostBases.name());
+		if(!section.isSet("LightPost_Height")) {
+			section.addDefault("LightPost_Height", LightPost_Height);
+		} else {
+			section.set("LightPost_Height", LightPost_Height);
+		}
+
+		if(!section.isSet("Materials_For_Lights")) {
+			section.addDefault("Materials_For_Lights", lights.name());
+		} else {
+			section.set("Materials_For_Lights", lights.name());
+		}
+
+		if(!section.isSet("Materials_For_LightPosts")) {
+			section.addDefault("Materials_For_LightPosts", lightPosts.name());
+		} else {
+			section.set("Materials_For_LightPosts", lightPosts.name());
+		}
+
+		if(!section.isSet("Materials_For_LightPostBases")) {
+			section.addDefault("Materials_For_LightPostBases", LightPostBases.name());
+		} else {
+			section.set("Materials_For_LightPostBases", LightPostBases.name());
+		}
 	}
 }
