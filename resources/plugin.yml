@@ -28,6 +28,7 @@ permissions:
     description: Gives access to all CityWorld commands
     children:
       cityworld.command: true
+      cityworld.command.reload: true
       cityworld.create: true
       citychunk.command: true
       cityinfo.command: true
