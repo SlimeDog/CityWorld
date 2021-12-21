@@ -6,10 +6,15 @@ import java.io.InputStream;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.logging.Logger;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.EventHandler;
@@ -25,9 +30,15 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 
 	public final static Logger log = Logger.getLogger("Minecraft.CityWorld");
 
+	private final Map<String, CityWorldGenerator> generatorList = Maps.newHashMap();
+
 	@Override
 	public ChunkGenerator getDefaultWorldGenerator(String name, String style) {
-		return new CityWorldGenerator(this, name, style);
+		CityWorldGenerator generator = new CityWorldGenerator(this, name, style);
+
+		this.generatorList.put(name.toLowerCase(), generator);
+
+		return this.generatorList.get(name.toLowerCase());
 	}
 
 	@Override
@@ -56,6 +67,14 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 		reportMessage("Enabled");
 
 		getServer().getPluginManager().registerEvents(this, this);
+	}
+
+	public void reload() {
+		defaults = CityWorldSettings.loadSettings(this);
+
+		for(CityWorldGenerator generator : this.generatorList.values()) {
+			generator.initializeWorldInfo(generator.getWorld());
+		}
 	}
 
 	private void addCommand(String keyword, CommandExecutor exec) {

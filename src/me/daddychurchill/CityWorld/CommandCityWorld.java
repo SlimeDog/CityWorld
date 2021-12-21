@@ -28,9 +28,7 @@ class CommandCityWorld implements CommandExecutor {
 					}
 				}
 
-				Bukkit.getPluginManager().disablePlugin(this.plugin);
-
-				Bukkit.getPluginManager().enablePlugin(this.plugin);
+				this.plugin.reload();
 
 				sender.sendMessage("§aPlugin Reloaded");
 				return true;
