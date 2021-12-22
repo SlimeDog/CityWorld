@@ -12,6 +12,8 @@ But Daddy hasn't been to the city for a while now. We decided to moderize a few 
     - Materials_For_LightPosts: SPRUCE_FENCE
     - Materials_For_LightPostBases: STONE
 - Add `cityworld reload` command
+  - Accessible from the console
+  - Accessible in-game with  permission `cityworld.command.reload`
 - Separate building floor materials from ceiling materials
   - `Materials_For_BuildingCeilings` will continue to populate the perimeter of each floor (every four levels)
   - `Materials_For_BuildingFloors` will populate the interior of each floor 
@@ -27,6 +29,7 @@ But Daddy hasn't been to the city for a while now. We decided to moderize a few 
     - OAK_PLANKS
     - SPRUCE_PLANKS
   ```
+- Add bStats
 - Update support for WorldEdit schematics and `citychunk regen` command
 
 #### 5.0.0 Modifications to support MC 1.18.x
