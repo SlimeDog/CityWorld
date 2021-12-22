@@ -3,7 +3,7 @@ main: me.daddychurchill.CityWorld.CityWorld
 version: 5.0.5-SNAPSHOT
 api-version: 1.18
 load: STARTUP
-author: DaddyChurchill
+authors: [DaddyChurchill, GabrielHD55, SlimeDog]
 website: https://www.spigotmc.org/resources/cityworld.2250/
 description: The great outdoors is all good and fine but sometimes you just want to go to town.
 softdepend: [WorldEdit]
