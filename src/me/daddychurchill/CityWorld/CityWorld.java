@@ -1,18 +1,7 @@
 package me.daddychurchill.CityWorld;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.logging.Logger;
-
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import me.daddychurchill.CityWorld.Plugins.LootProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandExecutor;
@@ -24,7 +13,15 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.daddychurchill.CityWorld.Plugins.LootProvider;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Map;
+import java.util.logging.Logger;
 
 public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 
@@ -73,7 +70,11 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 		defaults = CityWorldSettings.loadSettings(this);
 
 		for(CityWorldGenerator generator : this.generatorList.values()) {
-			generator.initializeWorldInfo(generator.getWorld());
+			World world = Bukkit.getWorld(generator.worldName);
+
+			if(world != null) {
+				generator.initializeWorldInfo(world);
+			}
 		}
 	}
 
