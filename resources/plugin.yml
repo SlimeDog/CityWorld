@@ -1,12 +1,12 @@
 name: CityWorld
 main: me.daddychurchill.CityWorld.CityWorld
-version: 5.0.6-SNAPSHOT
+version: 5.0.7-SNAPSHOT
 api-version: 1.18
 load: STARTUP
 authors: [DaddyChurchill, GabrielHD150, SlimeDog]
 website: https://www.spigotmc.org/resources/cityworld.2250/
 description: The great outdoors is all good and fine but sometimes you just want to go to town.
-softdepend: [WorldEdit]
+depend: [WorldEdit]
 loadbefore: [Multiverse-Core, dimension-door, multiworld]
 database: false
 prefix: CityWorld

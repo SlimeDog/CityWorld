@@ -1,11 +1,14 @@
 package me.daddychurchill.CityWorld;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import me.daddychurchill.CityWorld.Plugins.LootProvider;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -19,6 +22,7 @@ import java.io.InputStream;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -55,6 +59,12 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 
 	@Override
 	public void onEnable() {
+		loadConfig();
+
+		if(getConfig().getBoolean("enable-metrics", true)) {
+			new SpigotMetrics(this, 13692);
+		}
+
 		addCommand("cityworld", new CommandCityWorld(this));
 		addCommand("citychunk", new CommandCityChunk(this));
 		addCommand("cityinfo", new CommandCityInfo(this)); // added by Sablednah (see below)
@@ -76,6 +86,22 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 				generator.initializeWorldInfo(world);
 			}
 		}
+	}
+
+	public void loadConfig() {
+		List<String> comments = Lists.newArrayList();
+		comments.add("");
+		comments.add(" ========== BSTATS METRICS ========================================================================\n");
+		comments.add(" By default, the plugin collects and transmits anonymous statistics to bstats.org.");
+		comments.add(" Data collection may be disabled here, or generally in the bStats/config.yml.");
+		comments.add("");
+
+		FileConfiguration config = getConfig();
+
+		config.setComments("enable-metrics", comments);
+		config.addDefault("enable-metrics", true);
+
+		saveConfig();
 	}
 
 	private void addCommand(String keyword, CommandExecutor exec) {
