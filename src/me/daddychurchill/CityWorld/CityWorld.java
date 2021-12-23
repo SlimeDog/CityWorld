@@ -59,7 +59,10 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 
 	@Override
 	public void onEnable() {
+		saveDefaultConfig();
+
 		loadConfig();
+		loadComments();
 
 		if(getConfig().getBoolean("enable-metrics", true)) {
 			new SpigotMetrics(this, 13692);
@@ -74,12 +77,14 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 		reportMessage("Enabled");
 
 		getServer().getPluginManager().registerEvents(this, this);
-
-		loadConfig();
 	}
 
 	public void reload() {
+		saveDefaultConfig();
+
 		loadConfig();
+		loadComments();
+
 		defaults = CityWorldSettings.loadSettings(this);
 
 		for(CityWorldGenerator generator : this.generatorList.values()) {
@@ -93,6 +98,13 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 	}
 
 	public void loadConfig() {
+		FileConfiguration config = getConfig();
+		config.addDefault("enable-metrics", true);
+
+		saveConfig();
+	}
+
+	public void loadComments() {
 		List<String> comments = Lists.newArrayList();
 		comments.add("");
 		comments.add(" ========== BSTATS METRICS ========================================================================");
@@ -101,8 +113,6 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 		comments.add("");
 
 		FileConfiguration config = getConfig();
-
-		config.addDefault("enable-metrics", true);
 		config.setComments("enable-metrics", comments);
 
 		saveConfig();

@@ -1,0 +1,65 @@
+#CityWorld Default Options
+
+#
+# ========== BSTATS METRICS ========================================================================
+# By default, the plugin collects and transmits anonymous statistics to bstats.org.
+# Data collection may be disabled here, or generally in the bStats/config.yml.
+#
+enable-metrics: true
+
+default:
+    IncludeRoads: true
+    IncludeRoundabouts: true
+    IncludeSewers: true
+    IncludeCisterns: true
+    IncludeBasements: true
+    IncludeMines: true
+    IncludeBunkers: true
+    IncludeBuildings: true
+    IncludeHouses: true
+    IncludeFarms: true
+    IncludeMunicipalities: true
+    IncludeIndustrialSectors: true
+    IncludeAirborneStructures: true
+    IncludeCaves: true
+    IncludeLavaFields: true
+    IncludeSeas: true
+    IncludeMountains: true
+    IncludeOres: true
+    IncludeBones: true
+    IncludeFires: true
+    SpawnAnimals: 0.6666666666666666
+    SpawnBeings: 0.5
+    SpawnBaddies: 0.047619047619047616
+    SpawnVagrants: 0.2
+    NameVillagers: true
+    ShowVillagersNames: true
+    SpawnersInBunkers: true
+    SpawnersInMines: true
+    SpawnersInSewers: true
+    TreasuresInBunkers: true
+    TreasuresInMines: true
+    TreasuresInSewers: true
+    TreasuresInBuildings: true
+    IncludeUndergroundFluids: true
+    IncludeAbovegroundFluids: true
+    IncludeWorkingLights: true
+    IncludeNamedRoads: true
+    IncludeDecayedRoads: false
+    IncludeDecayedBuildings: false
+    IncludeDecayedNature: false
+    IncludeBuildingInteriors: true
+    UseMinecraftLootTables: true
+    ForceLoadWorldEdit: false
+    BroadcastSpecialPlaces: false
+    TreeStyle: NORMAL
+    SpawnTrees: 0.5
+    SubSurfaceStyle: NONE
+    CenterPointOfChunkRadiusX: 0
+    CenterPointOfChunkRadiusZ: 0
+    ConstructChunkRadius: 1875000
+    RoadChunkRadius: 1875000
+    CityChunkRadius: 1875000
+    BuildOutsideRadius: false
+    MinInbetweenChunkDistanceOfCities: 0
+    RuralnessLevel: 0.0
