@@ -77,6 +77,8 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 	}
 
 	public void reload() {
+		loadConfig();
+
 		defaults = CityWorldSettings.loadSettings(this);
 
 		for(CityWorldGenerator generator : this.generatorList.values()) {
@@ -89,17 +91,19 @@ public class CityWorld extends JavaPlugin implements CityWorldLog, Listener {
 	}
 
 	public void loadConfig() {
+		FileConfiguration config = getConfig();
+		config.addDefault("enable-metrics", true);
+
+		saveConfig();
+
+		FileConfiguration commentsConfig = getConfig();
 		List<String> comments = Lists.newArrayList();
 		comments.add("");
-		comments.add(" ========== BSTATS METRICS ========================================================================\n");
+		comments.add(" ========== BSTATS METRICS ========================================================================");
 		comments.add(" By default, the plugin collects and transmits anonymous statistics to bstats.org.");
 		comments.add(" Data collection may be disabled here, or generally in the bStats/config.yml.");
 		comments.add("");
-
-		FileConfiguration config = getConfig();
-
-		config.setComments("enable-metrics", comments);
-		config.addDefault("enable-metrics", true);
+		commentsConfig.setComments("enable-metrics", comments);
 
 		saveConfig();
 	}

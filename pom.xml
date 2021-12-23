@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.daddychurchill</groupId>
     <name>CityWorld</name>
-    <version>5.0.7-SNAPSHOT</version>
+    <version>5.0.8-SNAPSHOT</version>
     <artifactId>CityWorld</artifactId>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
